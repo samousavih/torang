@@ -22,3 +22,9 @@ cache:
   yarn: true
   directories:
     - node_modules
+deploy:  
+  provider: gae
+  project: api-project-296770943829
+  keyfile: gcloud-secret.json
+  verbosity: debug
+  on: master
