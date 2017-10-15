@@ -28,6 +28,7 @@ export class Gallery extends React.PureComponent { // eslint-disable-line react/
     });
     return (
       <div>
+        test
         <AppBar position="static" color="default">
           <Toolbar>
             <Typography type="title" color="inherit">
