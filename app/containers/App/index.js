@@ -22,7 +22,7 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import Menu, { MenuItem } from 'material-ui/Menu';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     marginTop: theme.spacing.unit * 3,
     width: '100%',
@@ -46,8 +46,8 @@ class App extends React.PureComponent { // eslint-disable-line react/prefer-stat
   state = {
     menu: {
       anchorEl: null,
-      open: false
-    }
+      open: false,
+    },
   };
   handleMenuOpen = (event) => {
     this.setState({ menu: { open: true, anchorEl: event.currentTarget } });
