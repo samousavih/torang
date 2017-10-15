@@ -12,36 +12,29 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import makeSelectGallery from './selectors';
 import messages from './messages';
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+
 
 export class Gallery extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const images = [
-      {
-        original: 'http://lorempixel.com/1000/600/nature/1/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+    const styles = theme => ({
+      root: {
+        marginTop: theme.spacing.unit * 3,
+        width: '100%',
       },
-      {
-        original: 'http://lorempixel.com/1000/600/nature/2/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/2/',
-      },
-      {
-        original: 'http://lorempixel.com/1000/600/nature/3/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/3/',
-      },
-    ];
+    });
     return (
       <div>
-        <Helmet
-          title="Gallery"
-          meta={[
-            { name: 'description', content: 'Description of Gallery' },
-          ]}
-        />
-        <FormattedMessage {...messages.header} />
-        <ImageGallery
-          items={images}
-          slideInterval={2000}
-        />
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <Typography type="title" color="inherit">
+              Title
+          </Typography>
+          </Toolbar>
+        </AppBar>
       </div>
     );
   }
