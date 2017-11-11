@@ -12,11 +12,19 @@ module.exports = (options) => ({
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
   module: {
+    noParse: /moment\.js/,
     loaders: [{
       test: /\.js$/, // Transform all .js files required somewhere with Babel
       loader: 'babel-loader',
       exclude: /node_modules/,
-      query: options.babelQuery,
+      query: {
+        plugins: [
+          ['import', {
+            libraryName: 'antd',
+            style: 'css',
+          }],
+        ],
+      },
     }, {
       // Do not transform vendor's CSS with CSS-modules
       // The point is that they remain in global scope.
@@ -78,6 +86,9 @@ module.exports = (options) => ({
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
+    alias: {
+      moment$: 'moment/moment.js',
+    },
     extensions: [
       '.js',
       '.jsx',
