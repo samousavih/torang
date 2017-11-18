@@ -1,11 +1,25 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
+import { FixtureAPI } from '../../utils/fixture/fixtureApi';
+import {
+  LOAD_IMAGES,
+} from './constants';
 
-// Individual exports for testing
-export function* defaultSaga() {
-  // See example in containers/HomePage/sagas.js
+import {
+  imagesLoaded,
+  imagesLoadingError,
+} from './actions';
+
+export function* getImages() {
+  try {
+    const getImagesResponse = yield call(FixtureAPI.getImages);
+    // const deviceList = yield call(request, url, params);
+    // yield put(setServiceResponse(getImagesResponse));
+    yield put(imagesLoaded(getImagesResponse.data));
+  } catch (err) {
+    yield put(imagesLoadingError(err));
+  }
 }
-
-// All sagas to be loaded
-export default [
-  defaultSaga,
-];
+// Individual exports for testing
+export default function* rootSaga() {
+  yield takeEvery(LOAD_IMAGES, getImages);
+}

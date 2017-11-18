@@ -14,12 +14,23 @@ const selectGalleryDomain = () => (state) => state.get('gallery');
  * Default selector used by Gallery
  */
 
-const makeSelectGallery = () => createSelector(
-  selectGalleryDomain(),
-  (substate) => substate.toJS()
+const makeSelectImages = () => createSelector(
+  selectGalleryDomain,
+  (substate) => substate.images
 );
 
-export default makeSelectGallery;
-export {
+const makeSelectLoading = () => createSelector(
   selectGalleryDomain,
+  (substate) => substate.loading
+);
+
+const makeSelectError = () => createSelector(
+  selectGalleryDomain,
+  (substate) => substate.error
+);
+
+export {
+  makeSelectImages,
+  makeSelectLoading,
+  makeSelectError,
 };
